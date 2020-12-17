@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+	<title>Student SignUp</title>
+      <style>
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #0020C2;
+        border-radius: 6px;
+        outline: none;
+      }
+
+    </style>
+</head>
+<body style="background-image:url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80')"><div > <a style="color: #008000 ;font-size:25px" href="{% url 'select'%}">Go Back</a></div>
+<div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:40px;font-weight:bold">
+Student Sign Up Section
+</div>
+
+<br>
+        {% if registered %}
+<center><strong style="color: #FF0000; font-size:50px">You have registered successfully</strong></center>
+
+                {% else %}
+<form id="stud_form" method="post" action="/studregi/" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ stud_form.as_p }}
+
+<input type="submit" name="submit" class="btn btn-success" value="Register" />
+</form>
+
+        {% endif %}
+<hr>
+<center><div id="grad2" style="text-align:center;margin:auto;color:#2B1B17;font-size:40px;font-weight:bold">
+If You Are Registered Then Login Here
+</div>
+  <br>
+ <a class="button" href="{% url 'studlogin'%}">Student Login</a>
+  </center>
+<br>
+</body>
+{% endblock %}
+</html>
+
+

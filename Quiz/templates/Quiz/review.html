@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% block main_content %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Teacher Review{% endblock %}</title>
+</head>
+<a style="color: #008000 ;font-size:25px" href="{% url 'logout'%}">Log Out</a></div>
+<div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:40px;font-weight:bold">
+SCHOOL'S CHALLENGE QUIZ
+</div>
+<body class='body' style="font-size:25px;color:#0000A0;background-image:url('https://image.freepik.com/free-vector/orange-question-mark-background-with-text-space_1017-27394.jpg')" >
+<header>
+
+    <h1>Teacher Review</h1>
+    <hr>
+{% for usrs in usr %}
+    User Name : {{usrs.username}} <br>
+    <br>score of {{usrs.username}} : {{score}}<br><hr><br>
+{% endfor %}
+</header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main></body>
+{% endblock %}
+</html>

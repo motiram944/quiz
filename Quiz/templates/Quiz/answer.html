@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% block main_content %}
+<html>
+<head>
+	<title>Score</title>
+</head>
+{% load static %}
+<div align="right"><a style="color: #00ff00 ;font-size:25px" href="{% url 'logout'%}">Log Out</a></div>
+<div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:55px;font-weight:bold">
+SCHOOL'S CHALLENGE QUIZ
+</div>
+<body style="background-image:url('#');font-family:courier; font-size:150%;">
+
+</div>
+<center>
+<h1 style="color:#000066">Your score is {{score}}</h1>
+<div> <a style="color:#8a2be2;font-size:150%;" href="{% url 'certificate' %}">certificate is here</a></div>
+<div> <a style="color:#8a2be2;font-size:150%;" href="{% url 'check' %}">Check your answers</a></div></center>
+</body>
+{% endblock %}
+</html>

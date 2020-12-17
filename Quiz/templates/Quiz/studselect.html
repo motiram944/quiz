@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% block main_content %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Welcome{% endblock %}</title>
+        <style>
+      .container {
+        position: absolute;
+        top: 10%;
+      }
+      .button {
+        border: none;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        text-transform: uppercase;
+        outline: none;
+        overflow: hidden;
+        position: relative;
+        color: #eeeeee;
+        font-weight: 600;
+        font-size: 15px;
+        background-color: #153f00;
+        padding: 15px 50px;
+        margin: 0 auto;
+      }
+      .button span {
+        position: relative;
+        z-index: 1;
+      }
+      .button:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 470%;
+        width: 140%;
+        background: #52b71f;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        -webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+        transform: translateX(-100%) translateY(-25%) rotate(45deg);
+      }
+      .button:hover:after {
+        -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+        transform: translateX(-9%) translateY(-25%) rotate(45deg);
+      }
+    </style>
+</head>
+<body style="background-image:url('https://source.unsplash.com/user/erondu/1600x900')">
+<div align="right">
+    <a style="color: #fff555 ;font-size:25px" href="{% url 'logout'%}">Log Out</a></div>
+
+<script>
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+
+</script>
+<div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:40px;font-weight:bold">
+SCHOOL'S CHALLENGE QUIZ
+</div>
+<!--<h1 style="color:#CCFF00;font-size:25px;">Start Quiz before time ends in <span id="time"></span> minutes!</h1>-->
+<header>
+
+     <div align="center" style="font-size:50px;color:#2C3539;"> Hi {{ user.username }} ( ͡ᵔ ͜ʖ͡ᵔ )✌</div><br>
+      <pre class="tab">
+
+      </pre>
+<br> <center><h1 style="color: #0e2f44; font-size:50px" >Select option? Quiz or Check answers</h1>
+<div >
+    <div>
+      <button type="button" class="button">
+          <a style="color: #c2b490 ;font-size:25px" href="{% url 'quiz'%}"><span>Start Quiz</span></a>
+      </button>
+    </div>
+    </div><br><br>
+
+<div > <div>
+      <button type="button" class="button">
+          <a style="color: #c2b490 ;font-size:25px" href="{% url 'check'%}"><span>Check Answers</span></a>
+      </button>
+    </div></div><br>
+<div >
+    <div>
+      <button type="button" class="button">
+          <a style="color: #c2b490 ;font-size:25px" href="{% url 'leader'%}"><span>leader board of Quiz</span></a>
+      </button>
+    </div>
+    </div><br>
+    </center>
+</header>
+  <main>
+    {% block content %}
+    {% endblock %}
+	<div class="basic">
+</div>
+  </main>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% block main_content %}
+<html>
+<head>
+	<title>Quiz</title>
+</head>
+<header>
+    <div align="right"><h1 style="color:#101010;font-size:25px;"><span id="time"></span> minutes!</h1></div>
+</header>
+<h1 style="color:#CC0000; font-family:verdana; font-size:300%;text-align:center;">SCHOOL'S CHALLENGE QUIZ</h1>
+<b><body style="color:#000066;background-image:url('https://image.freepik.com/free-vector/orange-question-mark-background-with-text-space_1017-27394.jpg');font-family:courier; font-size:120%;">
+<a style="color: #006600 ;font-size:25px" href="{% url 'logout'%}">Log Out</a></div>
+<script>
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 30,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+</script>
+
+<form action= 'answers/' method = "POST" >
+    {% for question in questions %}       
+<div class = 'question'>Q{{ question.question }} </div><br>
+<div id= "choices" class='select'>
+    <input type = "radio" name="{{question.id}}" value="{{question.choice_one}}">{{question.choice_one}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.choice_two}}">{{question.choice_two}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.choice_three}}">{{question.choice_three}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.choice_four}}">{{question.choice_four}}<br>
+    <input type = "radio" name="{{question.id}}" value="{{question.choice_five}}">{{question.choice_five}}<br>
+</div>
+<br> 
+    {% endfor %}
+<div style="text-align:center"> <input style="padding: 10px 35px;font-size:120%;cursor: pointer;" type="submit" class="submit" id="submit" value="Submit"/></div>
+    {% csrf_token %}
+</form>
+</body></b>
+{% endblock %}
+</html>

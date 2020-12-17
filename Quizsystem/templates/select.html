@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+
+
+<html>
+<head>
+	<title>welcome</title>
+
+</head>
+{% block body %}
+<div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:40px;font-weight:bold">
+SCHOOL'S CHALLENGE QUIZ
+</div>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 {background-color: #0000FF;}
+</style>
+<body style="background-image:url('https://images.unsplash.com/photo-1437435409766-a478cc6da81a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1934&q=80')">
+<br> <center><h1 style="color: #3B3131; font-size:50px" >Student Section</h1></center>
+<br> <center><div><h5>Register Here Student</h5></div></center>
+<center><div > <a style="color: #fff555 ;font-size:25px" href="{% url 'studregi'%}"><button class="button button1">Student Registration</button></a></div></center><br>
+<br> <center><div><h5>Student Login</h5></div></center>
+<center><div > <a style="color: #fff555 ;font-size:25px" href="{% url 'studlogin'%}"><button class="button button1">Student Login</button></a></div><br></center><br><hr>
+<br> <center><h1 style="color: #3B3131; font-size:50px" >Teacher Section</h1></center>
+<br> <center><div><h5>Teacher Registration</h5></div></center>
+<center><div > <a style="color:#FF9900 ;font-size:25px" href="{% url 'teachregi'%}"><button class="button button1">Teacher Registration</button></a></div></center><br>
+<br> <center><div><h5>Teacher Login</h5></div></center>
+<center><div > <a style="color: #FF9900 ;font-size:25px" href="{% url 'teachlogin'%}"><button class="button button1">Teacher Login</button></a></div></center><br>
+<div > <a style="color: #fff555 ;font-size:25px" href="{% url 'leader'%}">leader board of Quiz</a></div><br>
+</body>
+{% endblock body%}
+</html>
